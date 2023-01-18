@@ -8,12 +8,11 @@ const NoteState = (props) => {
   const [notes, setNotes] = useState(notesInitial)
   // Get all notes
   const getNotes = async () =>{
-    /* eslint-enable no-unused-vars */
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhZGIzZWE3NDczNDJjZmFkNjczMDMwIn0sImlhdCI6MTY3MjMzMDk0OH0.1V7-B-F_CFrEQ1jc1dFKZdm2YBeO5g40yVXyg1nkWiY'
+        'auth-token':localStorage.getItem('token')
       }
     });
     const json = await response.json()
@@ -30,7 +29,7 @@ const NoteState = (props) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhZGIzZWE3NDczNDJjZmFkNjczMDMwIn0sImlhdCI6MTY3MjMzMDk0OH0.1V7-B-F_CFrEQ1jc1dFKZdm2YBeO5g40yVXyg1nkWiY'
+        'auth-token':localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag})
     });
@@ -44,13 +43,13 @@ const NoteState = (props) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhZGIzZWE3NDczNDJjZmFkNjczMDMwIn0sImlhdCI6MTY3MjMzMDk0OH0.1V7-B-F_CFrEQ1jc1dFKZdm2YBeO5g40yVXyg1nkWiY'
+        'auth-token':localStorage.getItem('token')
       }
     });
     const json = await response.json()
-    console.log(json);
+    //console.log(json);
 
-    console.log('Deleting the note with id' + id);
+   //console.log('Deleting the note with id' + id);
     const newNotes = notes.filter((note=> {return note._id!==id}));
     setNotes(newNotes);
   }
@@ -69,7 +68,7 @@ const NoteState = (props) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNhZGIzZWE3NDczNDJjZmFkNjczMDMwIn0sImlhdCI6MTY3MjMzMDk0OH0.1V7-B-F_CFrEQ1jc1dFKZdm2YBeO5g40yVXyg1nkWiY'
+        'auth-token':localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag})
     });
@@ -98,12 +97,12 @@ const NoteState = (props) => {
   )
 }
 
-NoteState.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  tag: PropTypes.string,
-  note: PropTypes.string,
-  children: PropTypes.string
+ NoteState.propTypes = {
+  title: PropTypes.any,
+  description: PropTypes.any,
+  tag: PropTypes.any,
+  note: PropTypes.any,
+  children: PropTypes.any
 }
 
 export default NoteState;

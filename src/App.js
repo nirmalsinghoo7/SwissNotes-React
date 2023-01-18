@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {Home} from './components/Home';
 import Navbar from './components/Navbar';
 import About from './components/About';
@@ -8,21 +7,24 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
-import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
 
 function App() {
+  const { REACT_APP_SERVER_URL } = process.env;
+  console.log(`server asdfasdf-  ${REACT_APP_SERVER_URL}`)
+  const clientURL = process.env.REACT_APP_SN_CLIENT_URL;
   const [alert, setAlert] = useState(null);
-  const showAlert = (message, type)=>{
+  const showAlert = (message, type) => {
     setAlert({
       msg: message,
-      type: type
-    })
-    setTimeout(()=>{
+      type: type,
+    });
+    setTimeout(() => {
       setAlert(null);
-    }, 3000)
-  }
+    }, 3000);
+  };
   return (
     <>
     <NoteState>
@@ -31,10 +33,10 @@ function App() {
         <Alert alert={alert} />
         <div className="container">
           <Routes>
-            <Route exact path="/" showAlert={showAlert} element={<Home />} />
+            <Route exact path="/"element={<Home showAlert={showAlert} />} />
             <Route exact path="/about" element={<About />} />
-            <Route exact path="/login" showAlert={showAlert} element={<Login />} />
-            <Route exact path="/signup" showAlert={showAlert} element={<Signup />} />
+            <Route exact path="/login" element={<Login showAlert={showAlert} />} />
+            <Route exact path="/signup" element={<Signup showAlert={showAlert} />} />
           </Routes>
         </div>
       </Router>
