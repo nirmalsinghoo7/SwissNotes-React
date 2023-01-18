@@ -12,7 +12,7 @@ const JWT_SECRET = 'S$wissC0de$'
 router.post('/createuser',[
   body('name', 'Enter valid name').isLength({ min: 3 }),
   body('email', 'Enter valid email').isEmail(),
-  body('password', 'Password must be atleast 5 characters').isLength({ min: 5 }),
+  body('password', 'Password must be at least 5 characters').isLength({ min: 5 }),
   ], async (req, res)=>{
     success = false;
   // If there are errors, return Bad Request and the errors.
