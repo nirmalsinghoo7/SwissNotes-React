@@ -36,6 +36,7 @@ const Signup = (props) => {
   }
   return (
     <div className='container'>
+    <h2 className='mt-2'>Signup to use to SwissNotes</h2>
      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name</label>
@@ -59,6 +60,6 @@ const Signup = (props) => {
   )
 }
 Signup.propTypes = {
-  showAlert: PropTypes.string
+  showAlert: PropTypes.any
 }
 export default Signup

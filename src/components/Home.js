@@ -12,6 +12,6 @@ export const Home = (props) => {
 }
 
 Home.propTypes = {
-  showAlert: PropTypes.string
+  showAlert: PropTypes.any
 }
 export default Home
