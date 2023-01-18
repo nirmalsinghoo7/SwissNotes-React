@@ -25,8 +25,10 @@ const Login = (props) => {
       localStorage.setItem('token', json.authtoken)
       props.showAlert("Logged in successfully", "success");
       history("/");
+
     }else{
       props.showAlert("Invalid details", "danger")
+
     }
 
   }
@@ -35,6 +37,7 @@ const Login = (props) => {
   }
   return (
     <div>
+    <h2 className='mt-2'>Login to continue to SwissNotes</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>
@@ -50,6 +53,6 @@ const Login = (props) => {
   )
 }
 Login.propTypes = {
-  showAlert: PropTypes.string
+  showAlert: PropTypes.any
 }
 export default Login

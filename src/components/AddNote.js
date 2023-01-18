@@ -1,10 +1,7 @@
 
 import React, { useContext, useState} from 'react'
 import noteContext from "../context/notes/noteContext";
-/* eslint-disable no-unused-vars */
-/* import { useContext} from 'react' */
-/* eslint-enable no-unused-vars */
-//import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 const AddNote = (props) => {
   const context = useContext(noteContext);
@@ -14,6 +11,8 @@ const AddNote = (props) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
     setNote({title: "", description: "", tag: ""});
+     props.showAlert("Note Added Successfully","success");
+
   }
 
   const onChange = (e) =>{
@@ -43,9 +42,10 @@ const AddNote = (props) => {
 
   )
 }
-/* AddNote.propTypes = {
-  note: PropTypes.string,
-  addNote: PropTypes.string,
-  addNotes: PropTypes.string
-} */
+AddNote.propTypes = {
+  note: PropTypes.any,
+  addNote: PropTypes.any,
+  showAlert: PropTypes.any
+
+}
 export default AddNote
